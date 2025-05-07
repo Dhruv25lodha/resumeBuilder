@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body>
+
+<div class="signup-container">
+  <h2>Create Account</h2>
+  <form id="signupForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <div id="message" class="error"></div>
+    <button type="submit" class="btn"><a href="home.html">Sign up</a></button>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById("signupForm");
+  const message = document.getElementById("message");
+
+  function isStrongPassword(password) {
+    // At least 8 characters, one number, one uppercase, one lowercase, one special character
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return regex.test(password);
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (!name || !email || !password || !confirmPassword) {
+      message.textContent = "Please fill out all fields.";
+      return;
+    }
+
+    if (!isStrongPassword(password)) {
+      message.textContent = "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      message.textContent = "Passwords do not match.";
+      return;
+    }
+
+    message.className = "success";
+    message.textContent = "Signup successful!";
+    setTimeout(() => {
+      window.location.href = "home.html"; // Redirect to home page
+    }, 1500);
+    
+    // Here you can POST data to the server or save it locally
+  });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Details Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f7fb;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+      margin-top: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .submit-btn {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .resume-display {
+      display: none;
+      margin-top: 2rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .resume-display h2 {
+      color: #007bff;
+    }
+    .resume-section {
+      margin-bottom: 1.5rem;
+    }
+    .resume-section p {
+      margin: 0.5rem 0;
+    }
+    .project, .certificate, .achievement {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 5px;
+    }
+    .project h3, .certificate h3, .achievement h3 {
+      color: #007bff;
+      margin-top: 0;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="resumeForm">
+      <h1>Resume Builder - Enter Your Details</h1>
+
+      <h2>Personal Information</h2>
+      <label>Full Name</label><input type="text" name="fullName" required>
+      <label>Mobile Number</label><input type="tel" name="mobile" required>
+      <label>Email</label><input type="email" name="email" required>
+      <label>LinkedIn Profile</label><input type="url" name="linkedin">
+      <label>College Degree, Course (with Passing Year)</label><input type="text" name="degree" required>
+      <label>College City & State</label><input type="text" name="collegeCity" required>
+      <label>GitHub Profile</label><input type="url" name="github">
+      <label>Naukri / Other Profiles</label><input type="url" name="otherProfiles">
+
+      <h2>Skills</h2>
+      <label>Languages (e.g. Python)</label><input type="text" name="languages" required>
+      <label>Frameworks (e.g. NumPy, Pandas)</label><input type="text" name="frameworks">
+      <label>Tools (e.g. Excel, MySQL)</label><input type="text" name="tools">
+      <label>Platforms (e.g. VS Code)</label><input type="text" name="platforms">
+      <label>Soft Skills (e.g. Report Building, Communication)</label><input type="text" name="softSkills">
+
+      <h2>Work Experience</h2>
+      <label>Internship</label><input type="text" name="internship">
+      <label>Current Job</label><input type="text" name="currentJob">
+      <label>Previous Job</label><input type="text" name="previousJob">
+
+      <h2>Languages Known</h2>
+      <label>Communication Languages (e.g. Hindi, English)</label><input type="text" name="communicationLanguages">
+
+      <h2>Projects</h2>
+      <label>Project Name</label><input type="text" name="projectName" required>
+      <label>Working</label><input type="text" name="projectWorking" required>
+      <label>Languages Used</label><input type="text" name="projectLanguages" required>
+      <label>Project Date</label><input type="date" name="projectDate" required>
+      <label>Project Summary</label><textarea rows="3" name="projectSummary" required></textarea>
+      <label>Project Link</label><input type="url" name="projectLink">
+
+      <h2>Certificates</h2>
+      <label>Certificate Name</label><input type="text" name="certificateName">
+      <label>Certificate Link</label><input type="url" name="certificateLink">
+      <label>Year</label><input type="text" name="certificateYear">
+      <label>Platform</label><input type="text" name="certificatePlatform">
+      <label>Brief Experience</label><textarea rows="2" name="certificateExperience"></textarea>
+
+      <h2>Achievements & Awards</h2>
+      <label>Participation / Winner</label><input type="text" name="achievementTitle">
+      <label>Year</label><input type="text" name="achievementYear">
+      <label>Your Role or Contribution</label><textarea rows="2" name="achievementRole"></textarea>
+
+      <h2>Category</h2>
+      <label>Course</label><input type="text" name="course">
+      <label>Specialization</label><input type="text" name="specialization">
+
+      <button type="submit" class="submit-btn">Submit Resume Details</button>
+    </form>
+
+    <div id="resumeDisplay" class="resume-display">
+      <button id="downloadBtn" class="submit-btn" style="display: none;">Download PDF</button>
+      <h1 id="displayName"></h1>
+      
+      <div class="resume-section">
+        <h2>Contact Information</h2>
+        <p id="displayContact"></p>
+      </div>
+
+      <div class="resume-section">
+        <h2>Education</h2>
+        <p id="displayEducation"></p>
+      </div>
+
+      <div class="resume-section">
+        <h2>Skills</h2>
+        <p id="displaySkills"></p>
+      </div>
+
+      <div class="resume-section">
+        <h2>Work Experience</h2>
+        <p id="displayExperience"></p>
+      </div>
+
+      <div class="resume-section">
+        <h2>Projects</h2>
+        <div id="displayProjects"></div>
+      </div>
+
+      <div class="resume-section">
+        <h2>Certificates</h2>
+        <div id="displayCertificates"></div>
+      </div>
+
+      <div class="resume-section">
+        <h2>Achievements & Awards</h2>
+        <div id="displayAchievements"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    document.getElementById('resumeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = {};
+      for (let [key, value] of formData.entries()) {
+        data[key] = value;
+      }
+
+      // Display the resume
+      document.getElementById('displayName').textContent = data.fullName;
+      
+      // Contact Information
+      document.getElementById('displayContact').innerHTML = `
+        Email: ${data.email}<br>
+        Phone: ${data.mobile}<br>
+        LinkedIn: ${data.linkedin}<br>
+        GitHub: ${data.github}
+      `;
+
+      // Education
+      document.getElementById('displayEducation').innerHTML = `
+        ${data.degree}<br>
+        ${data.collegeCity}
+      `;
+
+      // Skills
+      document.getElementById('displaySkills').innerHTML = `
+        <strong>Languages:</strong> ${data.languages}<br>
+        <strong>Frameworks:</strong> ${data.frameworks}<br>
+        <strong>Tools:</strong> ${data.tools}<br>
+        <strong>Platforms:</strong> ${data.platforms}<br>
+        <strong>Soft Skills:</strong> ${data.softSkills}
+      `;
+
+      // Work Experience
+      document.getElementById('displayExperience').innerHTML = `
+        ${data.internship ? `<strong>Internship:</strong> ${data.internship}<br>` : ''}
+        ${data.currentJob ? `<strong>Current Job:</strong> ${data.currentJob}<br>` : ''}
+        ${data.previousJob ? `<strong>Previous Job:</strong> ${data.previousJob}` : ''}
+      `;
+
+      // Projects
+      const projectsHtml = `
+        <div class="project">
+          <h3>${data.projectName}</h3>
+          <p><strong>Status:</strong> ${data.projectWorking}</p>
+          <p><strong>Technologies:</strong> ${data.projectLanguages}</p>
+          <p><strong>Date:</strong> ${data.projectDate}</p>
+          <p>${data.projectSummary}</p>
+          ${data.projectLink ? `<p><a href="${data.projectLink}" target="_blank">Project Link</a></p>` : ''}
+        </div>
+      `;
+      document.getElementById('displayProjects').innerHTML = projectsHtml;
+
+      // Certificates
+      const certificatesHtml = `
+        <div class="certificate">
+          <h3>${data.certificateName}</h3>
+          <p><strong>Platform:</strong> ${data.certificatePlatform}</p>
+          <p><strong>Year:</strong> ${data.certificateYear}</p>
+          <p>${data.certificateExperience}</p>
+          ${data.certificateLink ? `<p><a href="${data.certificateLink}" target="_blank">Certificate Link</a></p>` : ''}
+        </div>
+      `;
+      document.getElementById('displayCertificates').innerHTML = certificatesHtml;
+
+      // Achievements
+      const achievementsHtml = `
+        <div class="achievement">
+          <h3>${data.achievementTitle}</h3>
+          <p><strong>Year:</strong> ${data.achievementYear}</p>
+          <p>${data.achievementRole}</p>
+        </div>
+      `;
+      document.getElementById('displayAchievements').innerHTML = achievementsHtml;
+
+      // Show the resume display and download button
+      document.getElementById('resumeDisplay').style.display = 'block';
+      document.getElementById('downloadBtn').style.display = 'block';
+    });
+
+    // Add download functionality
+    document.getElementById('downloadBtn').addEventListener('click', async function() {
+      try {
+        // Get the resume content
+        const resumeContent = document.getElementById('resumeDisplay');
+        
+        // Create a temporary container for PDF generation
+        const tempContainer = document.createElement('div');
+        tempContainer.style.position = 'absolute';
+        tempContainer.style.left = '-9999px';
+        tempContainer.style.top = '-9999px';
+        tempContainer.style.width = '800px';
+        tempContainer.style.padding = '20px';
+        tempContainer.style.background = 'white';
+        tempContainer.innerHTML = resumeContent.innerHTML;
+        document.body.appendChild(tempContainer);
+
+        // Remove the download button from the temporary container
+        const downloadBtn = tempContainer.querySelector('#downloadBtn');
+        if (downloadBtn) {
+          downloadBtn.remove();
+        }
+
+        // Convert the content to canvas
+        const canvas = await html2canvas(tempContainer, {
+          scale: 2,
+          useCORS: true,
+          logging: true,
+          backgroundColor: '#ffffff'
+        });
+
+        // Remove the temporary container
+        document.body.removeChild(tempContainer);
+
+        // Create PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // A4 width in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        // Add the image to the PDF
+        pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, imgWidth, imgHeight);
+
+        // Save the PDF
+        pdf.save('resume.pdf');
+        
+        console.log('PDF generated successfully');
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('Error generating PDF. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>

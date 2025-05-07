@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Builder | Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.2rem;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .dropdown-section {
+      text-align: center;
+    }
+
+    select {
+      padding: 0.6rem;
+      width: 70%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+
+    .note {
+      margin-top: 1.5rem;
+      color: gray;
+      font-size: 0.9rem;
+    }
+
+    .go-btn {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Resume Builder</h2>
+</header>
+
+<div class="container">
+  <h1>Create Your Professional Resume</h1>
+  <p style="text-align:center;">Start building a resume tailored to your field of study or career path.</p>
+
+  <div class="btn-container">
+    <a href="signup.html" class="btn">Sign Up</a>
+    <a href="login.html" class="btn">Login</a>
+  </div>
+
+  <div class="dropdown-section">
+    <label for="course">Select your Course / Career Category:</label><br>
+    <select id="course">
+      <option value="">-- Select --</option>
+      <option value="ba.html">Bachelor's Degree (B.A, B.Com, B.Sc)</option>
+      <option value="btech.html">B.Tech / B.E</option>
+      <option value="mtech.html">M.Tech / M.E</option>
+      <option value="mba.html">MBA</option>
+      <option value="bba.html">BBA</option>
+      <option value="mca.html">MCA</option>
+      <option value="bca.html">BCA</option>
+      <option value="llb.html">LLB</option>
+      <option value="llm.html">LLM</option>
+      <option value="phd.html">PhD</option>
+      <option value="diploma.html">Diploma Courses</option>
+      <option value="iti.html">ITI / Vocational</option>
+      <option value="medical.html">Medical (MBBS, BDS, Nursing)</option>
+      <option value="teaching.html">Teaching (B.Ed, M.Ed, NET)</option>
+      <option value="design.html">Design & Media (BFA, MFA, B.Des, M.Des)</option>
+      <option value="finance.html">Finance (CA, CFA, CMA, CS)</option>
+      <option value="govt.html">Government Exams (UPSC, SSC, Banking)</option>
+      <option value="freelancer.html">Freelancer / Creative Portfolio</option>
+      <option value="others.html">Others</option>
+    </select>
+
+    <br>
+    <button class="btn go-btn" onclick="redirectToCourse()">Go</button>
+
+    <div class="note">
+      You'll be guided to a resume format tailored for the selected category.
+    </div>
+  </div>
+</div>
+
+<script>
+  function redirectToCourse() {
+    const selected = document.getElementById("course").value;
+    if (selected) {
+      window.location.href = selected;
+    } else {
+      alert("Please select a course before proceeding.");
+    }
+  }
+</script>
+
+</body>
+</html>
